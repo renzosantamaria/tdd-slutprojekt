@@ -1,13 +1,13 @@
 
 export interface IMeetup {
-    id: number;
+    id: string;
     title: string;
     startDate: Date;
     endDate: Date;
     hostName: string;
     description: string;
     price?: number;
-    location: string;
+    address: string;
     attendees: string[];
     attendeeLimit?: number;
     comments: IComment[];

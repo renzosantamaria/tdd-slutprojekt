@@ -2,8 +2,8 @@ export interface IUser {
     id: number
     name: string
     email: string
-    attendingMeetupsIds: number[]
-    hostingMeetupsIds: number[]
+    attendingMeetupsIds: string[]
+    hostingMeetupsIds: string[]
   }
   
   export interface IUserPassword extends IUser {
