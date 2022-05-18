@@ -18,7 +18,7 @@ test('renders App component (smoke test)', () => {})
 
 describe('App integration tests', () => {
   it('Renders home page first', () => {
-    const currentMeetupsTitle = screen.getByText(/Upcomming meetups/i)
+    const currentMeetupsTitle = screen.getByText(/Upcoming meetups/i)
     expect(currentMeetupsTitle).toBeInTheDocument()
   })
 })
