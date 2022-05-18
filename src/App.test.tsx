@@ -1,9 +1,25 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import App from './App';
+import { Provider } from 'react-redux';
+import { makeStore } from './store/store';
+import { renderWithRouter } from './utils/testing';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+
+beforeEach(() => {
+  const store = makeStore()
+  renderWithRouter(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+})
+
+test('renders App component (smoke test)', () => {})
+
+describe('App integration tests', () => {
+  it('Renders home page first', () => {
+    const currentMeetupsTitle = screen.getByText(/Welcome to Home/i)
+    expect(currentMeetupsTitle).toBeInTheDocument()
+  })
+})
+
