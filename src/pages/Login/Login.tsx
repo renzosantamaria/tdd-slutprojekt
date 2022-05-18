@@ -2,7 +2,9 @@ import React, { FC } from "react"
 
 const Login: FC = () => {
     return (
-        <h1>Welcome to Login</h1>
+        <main>
+            <h1>Welcome to Login</h1>
+        </main>
     )
 }
 
