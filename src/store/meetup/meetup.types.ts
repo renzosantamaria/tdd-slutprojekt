@@ -1,6 +1,6 @@
 
 export interface IMeetup {
-    id: string;
+    id: number;
     title: string;
     startDate: Date;
     endDate: Date;
