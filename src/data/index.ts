@@ -1,9 +1,9 @@
 import { IMeetup } from "../store/meetup/meetup.types"
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 
 let meetups: IMeetup[] = [
   {
-    id: uuid(),
+    id: 1,
     title: 'meetup 1',
     startDate: new Date('2022-05-18T17:30:00'),
     endDate: new Date('2022-05-19T15:00:00'),
@@ -19,7 +19,7 @@ let meetups: IMeetup[] = [
     rating: [],
   },
   {
-    id: uuid(),
+    id: 2,
     title: 'meetup 2',
     startDate: new Date('2022-06-01T07:00:00'),
     endDate: new Date('2022-06-01T08:00:00'),
@@ -35,7 +35,7 @@ let meetups: IMeetup[] = [
     rating: [],
   },
   {
-    id: uuid(),
+    id: 3,
     title: 'meetup 3',
     startDate: new Date('2020-07-04T19:40:00'),
     endDate: new Date('2020-07-04T19:55:00'),
@@ -50,7 +50,7 @@ let meetups: IMeetup[] = [
     rating: [],
   },
   {
-    id: uuid(),
+    id: 4,
     title: 'meetup 4',
     startDate: new Date('2060-08-06T04:10:00'),
     endDate: new Date('2060-08-07T10:10:00'),
