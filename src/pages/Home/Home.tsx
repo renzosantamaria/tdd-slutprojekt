@@ -24,7 +24,7 @@ const Home: FC = () => {
                 {currentMeetups.length > 0 ? 
                     <ul>
                         {currentMeetups!.map(meetup => (
-                            <Meetup meetup={meetup} testId={'currentListItem'} key={meetup.id} />
+                            <Meetup meetup={meetup} testId={'upcomingMeetup'} key={meetup.id} pastMeetup={false} />
                         ))}
                     </ul>
                     :
@@ -36,7 +36,7 @@ const Home: FC = () => {
                 {pastMeetups.length > 0 ? 
                     <ul>
                         {pastMeetups!.map(meetup => (
-                            <Meetup meetup={meetup} testId={'currentListItem'} key={meetup.id} />
+                            <Meetup meetup={meetup} testId={'pastMeetup'} key={meetup.id} pastMeetup={true} />
                         ))}
                     </ul>
                     :
