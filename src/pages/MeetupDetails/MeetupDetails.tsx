@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router-dom"
-import { getMeetupById, updateMeetupAttendeeList, updateUserAttendingMeetupsIds } from "../../API"
-import { IMeetup } from "../../store/meetup/meetup.types"
+import { getMeetupById, updateCommentsList, updateMeetupAttendeeList, updateUserAttendingMeetupsIds } from "../../API"
+import { IComment, IMeetup } from "../../store/meetup/meetup.types"
+import Comment from "../../components/UI/Comment/Comment"
 import { RootState } from "../../store/store"
 import { updateUser } from "../../store/user/userSlice"
 
@@ -19,6 +20,8 @@ const MeetupDetails: FC = () => {
     const [meetupExist, setMeetupExists] = useState<boolean>(false)
     const [isUserAllowedToJoin, setIsUserAllowedToJoin] = useState<boolean>(false)
     const [cantJoinMessage, setCantJoinMessage] = useState<string>('')
+    const [orderedComments, setOrderedComments] = useState<IComment[]>([])
+    const [newComment, setNewComment] = useState<string>('')
     const location = useLocation()
     const state = location.state as CustomLocationState
     const past = state&&state.pastMeetup || undefined
@@ -44,11 +47,27 @@ const MeetupDetails: FC = () => {
         }
     }, [user])
 
+    useEffect(() => {
+        if (meetup) {
+            const orderedComments = meetup.comments.slice().sort((a, b) => +a.date - +b.date)
+            setOrderedComments(orderedComments)
+        }
+    }, [meetup])
+
     const handleAddAttendee = () => {
         const updatedMeetup = updateMeetupAttendeeList(+id!, user!.name)
         const updatedUser = updateUserAttendingMeetupsIds(user!.id, meetup!.id)
         updatedMeetup && setMeetup({ ...updatedMeetup }) 
         updatedUser && dispatch(updateUser(updatedUser)) 
+    }
+
+    const handleAddComment = (e: React.FormEvent) => {
+        e.preventDefault()
+        const updatedMeetup = updateCommentsList(+id!, { name: user!.name, date: new Date(), content: newComment })
+        if (updatedMeetup) {
+          setMeetup({ ...updatedMeetup })
+          setNewComment('')
+        }
     }
 
     return (
@@ -83,7 +102,24 @@ const MeetupDetails: FC = () => {
                     {(!user || !isUserAllowedToJoin )&& <p>{cantJoinMessage}</p>}
                 </section>
                 <section>
-                    <p>Leave a comment:</p>
+                    <h2>Comments</h2>
+                    {orderedComments.length === 0 && <p>Be the first to leave a comment</p>}
+                    {orderedComments && orderedComments.map((comment, index) => <Comment key={`${comment.name}${index}`} comment={comment} />)}
+                    {user && (
+                    <form onSubmit={e => handleAddComment(e)}>
+                        <label htmlFor="comments">Add a comment</label>
+                        <textarea
+                            name="comments"
+                            id="comments"
+                            cols={30}
+                            rows={5}
+                            value={newComment}
+                            onChange={e => setNewComment(e.target.value)}
+                        ></textarea>
+                        <button>Add</button>
+                    </form>
+                    )}
+                    {!user && <p>Log in to leave a comment</p>}
                 </section>
             </>
             :

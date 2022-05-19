@@ -1,5 +1,6 @@
 import {meetups} from '../data'
 import {users} from '../data'
+import { IComment } from '../store/meetup/meetup.types'
 import { IUser } from '../store/user/user.types'
 
 export const getAllUpcomingMeetups = (currentDate: Date) => {
@@ -46,6 +47,19 @@ export const updateUserAttendingMeetupsIds = (userId: number, meetupId: number) 
     updatedUser.attendingMeetupsIds = [...updatedUser.attendingMeetupsIds, meetupId]
     users[userIndex] = updatedUser
     return updatedUser
+  } else {
+    return undefined
+  }
+}
+export const updateCommentsList = (id: number, comment: IComment) => {
+  let meetupIndex = meetups.findIndex(meetup => meetup.id === id)
+  let meetup = meetups.find(meetup => meetup.id === id)
+
+  if (meetup) {
+    let newMeetup = { ...meetup }
+    newMeetup.comments = [...newMeetup.comments, comment]
+    meetups[meetupIndex] = newMeetup
+    return newMeetup
   } else {
     return undefined
   }
