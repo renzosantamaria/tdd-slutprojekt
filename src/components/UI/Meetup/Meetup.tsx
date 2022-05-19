@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 interface Props {
   meetup: IMeetup
   testId: string
+  pastMeetup?: boolean
 }
 
 const Meetup: FC<Props> = (props) => {
-    const { meetup, testId } = props
+    const { meetup, testId, pastMeetup } = props
     return (
-        <Link to={`/meetups/${meetup.id}`} >
+        <Link to={`/meetups/${meetup.id}`} state={{pastMeetup}} >
       <div role="listitem" data-testid={testId} >
         <h3>
           {meetup.title}
