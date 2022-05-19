@@ -4,6 +4,6 @@ export interface IUser {
     email: string
     attendingMeetupsIds: number[]
     hostingMeetupsIds: number[]
-    password: string
+    password?: string
 }
   
