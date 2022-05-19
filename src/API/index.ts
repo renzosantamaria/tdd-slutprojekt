@@ -1,4 +1,5 @@
-import meetups from '../data'
+import {meetups} from '../data'
+import {users} from '../data'
 
 export const getAllUpcomingMeetups = (currentDate: Date) => {
     let now = currentDate.getTime()
