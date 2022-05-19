@@ -7,9 +7,13 @@ export const getAllUpcomingMeetups = (currentDate: Date) => {
     return comingMeetups.slice().sort((a, b) => +a.startDate - +b.startDate)
   }
   
-  export const getAllPastMeetups = (currentDate: Date) => {
-    let now = currentDate.getTime()
-  
-    const pastMeetups = meetups.filter(meetup => meetup.startDate.getTime() < now)
-    return pastMeetups.slice().sort((a, b) => +b.startDate - +a.startDate)
-  }
+export const getAllPastMeetups = (currentDate: Date) => {
+  let now = currentDate.getTime()
+
+  const pastMeetups = meetups.filter(meetup => meetup.startDate.getTime() < now)
+  return pastMeetups.slice().sort((a, b) => +b.startDate - +a.startDate)
+}
+
+export const getMeetupById = (id: number) => {
+  return meetups.find(meetup => meetup.id === id)
+}
