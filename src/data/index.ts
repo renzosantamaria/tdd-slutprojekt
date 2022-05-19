@@ -1,7 +1,7 @@
 import { IMeetup } from "../store/meetup/meetup.types"
-// import { v4 as uuid } from 'uuid';
+import { IUser } from "../store/user/user.types"
 
-let meetups: IMeetup[] = [
+export const meetups: IMeetup[] = [
   {
     id: 1,
     title: 'meetup 1',
@@ -66,4 +66,37 @@ let meetups: IMeetup[] = [
   }
 ]
 
-export default meetups
+export const users: IUser[] = [
+  {
+    id: 1,
+    name: 'user 1',
+    email: 'user1@email.com',
+    password: 'password1',
+    attendingMeetupsIds: [],
+    hostingMeetupsIds: [1]
+  },
+  {
+    id: 2,
+    name: 'user 2',
+    email: 'user2@email.com',
+    password: 'password2',
+    attendingMeetupsIds: [2],
+    hostingMeetupsIds: [2]
+  },
+  {
+    id: 3,
+    name: 'user 3',
+    email: 'user3@email.com',
+    password: 'password3',
+    attendingMeetupsIds: [1,2],
+    hostingMeetupsIds: [3]
+  },
+  {
+    id: 4,
+    name: 'user 4',
+    email: 'user4@email.com',
+    password: 'password4',
+    attendingMeetupsIds: [1,3],
+    hostingMeetupsIds: [4]
+  },
+]
