@@ -3,6 +3,7 @@ import { renderWithRouter } from '../../utils/testing'
 import Home from './Home'
 import { makeStore } from '../../store/store'
 import { Provider } from 'react-redux'
+import userEvent from '@testing-library/user-event';
 
 beforeEach(() => {
   const store = makeStore()
@@ -30,5 +31,10 @@ describe('Home integration tests - meetup lists', () => {
   it('renders a list of 2 past meetups', async () => {
     const meetups = await screen.findAllByTestId('pastMeetup')
     expect(meetups).toHaveLength(2)
+  })
+  it('renders the text PAST on past meetup cards', () => {
+    const pastText = screen.getAllByTestId('pastMeetup')
+
+    expect(pastText).toHaveLength(2)
   })
 })
