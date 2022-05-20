@@ -6,6 +6,7 @@ import { IComment, IMeetup } from "../../store/meetup/meetup.types"
 import Comment from "../../components/UI/Comment/Comment"
 import { RootState } from "../../store/store"
 import { updateUser } from "../../store/user/userSlice"
+import classes from './MeetupDetails.module.css'
 
 interface CustomLocationState {
     pastMeetup: boolean
@@ -73,40 +74,42 @@ const MeetupDetails: FC = () => {
     return (
         <main>
             {meetup ? 
-            <>
-                <section>
-                    <h1>{meetup?.title}</h1>
-                    <div>
-                        <p>Hosted by: {meetup.hostName}</p>
-                        <p>Description: {meetup.description}</p>
-                        <p>
-                            Starts:
-                            {meetup.startDate.toDateString()}{' '}
-                            {meetup.startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-                        </p>
-                        <p>
-                            Ends:
-                            {meetup.endDate.toDateString()}{' '}
-                            {meetup.endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-                        </p>
-                        <p>Address: {meetup.address}</p>
-                        {meetup.attendees.length> 0 ?
-                        <p>Attendees: {meetup.attendees.join(',  ')}.</p>
-                        :   
-                        ''
-                        }
-                    </div>
-                </section>
-                <section>
-                    {isUserAllowedToJoin && user && <button onClick={handleAddAttendee}>Attend</button>}
-                    {(!user || !isUserAllowedToJoin )&& <p>{cantJoinMessage}</p>}
-                </section>
-                <section>
-                    <h2>Comments</h2>
-                    {orderedComments.length === 0 && <p>Be the first to leave a comment</p>}
+            <div className={classes.meetupDetailsContainer}>
+                <div className={classes.flexHorizontal}>
+                    <section className={classes.meetupInformation}>
+                        <h1>{meetup?.title}</h1>
+                        <div>
+                            <p>Hosted by: {meetup.hostName}</p>
+                            <p>Description: {meetup.description}</p>
+                            <p>
+                                Starts:
+                                {meetup.startDate.toDateString()}{' '}
+                                {meetup.startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                            </p>
+                            <p>
+                                Ends:
+                                {meetup.endDate.toDateString()}{' '}
+                                {meetup.endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                            </p>
+                            <p>Address: {meetup.address}</p>
+                            {meetup.attendees.length> 0 ?
+                            <p>Attendees: {meetup.attendees.join(',  ')}.</p>
+                            :   
+                            ''
+                            }
+                        </div>
+                    </section>
+                    <section className={classes.attendSection}>
+                        {isUserAllowedToJoin && user && <button onClick={handleAddAttendee}>Attend</button>}
+                        {(!user || !isUserAllowedToJoin )&& <p>{cantJoinMessage}</p>}
+                    </section>
+                </div>
+                <section className={classes.commentsSection}>
+                    <h2 className={classes.commentSectionHeading}>Comments:</h2>
                     {orderedComments && orderedComments.map((comment, index) => <Comment key={`${comment.name}${index}`} comment={comment} />)}
+                    {orderedComments.length === 0 && <p className={classes.commentMessage}>Be the first to leave a comment</p>}
                     {user && (
-                    <form onSubmit={e => handleAddComment(e)}>
+                    <form onSubmit={e => handleAddComment(e)} className={classes.commentForm}>
                         <label htmlFor="comments">Add a comment</label>
                         <textarea
                             name="comments"
@@ -116,12 +119,12 @@ const MeetupDetails: FC = () => {
                             value={newComment}
                             onChange={e => setNewComment(e.target.value)}
                         ></textarea>
-                        <button>Add</button>
+                        <button className={classes.addButton}>Add</button>
                     </form>
                     )}
                     {!user && <p>Log in to leave a comment</p>}
                 </section>
-            </>
+            </div>
             :
             !meetupExist && <p>Nothing to see here</p>
             }

@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { IComment } from '../../../store/meetup/meetup.types'
+import classes from './Comment.module.css'
 
 interface Props {
   comment: IComment
@@ -7,14 +8,11 @@ interface Props {
 
 const Comment: FC<Props> = (props) => {
     const { comment } = props
+    const commentDate = comment.date.toLocaleDateString()
     return (
-        <article>
-            <div>               
-                <p data-testid="commenters-name">{comment.name}</p>
-                <p>{comment.date.toLocaleDateString()}</p>
-                <p>{comment.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</p>
-            </div>
-            <p>{comment.content}</p>
+        <article className={classes.commentContainer}>      
+            <p>{commentDate}</p>
+            <p data-testid="commenters-name"><strong>{comment.name}</strong>: {comment.content}</p>
         </article>
     )
 }
