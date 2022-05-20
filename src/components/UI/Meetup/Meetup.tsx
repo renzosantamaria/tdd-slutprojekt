@@ -13,10 +13,11 @@ const Meetup: FC<Props> = (props) => {
     const { meetup, testId, pastMeetup } = props
     const startTime = `${meetup.startDate.toDateString()} ${meetup.startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`
     const endTime = `${meetup.endDate.toDateString()} ${meetup.endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`
+    const meetupStyle = pastMeetup ? classes.pastMeetupHeading : classes.meetupHeading 
     return (
       <Link to={`/meetups/${meetup.id}`} state={{pastMeetup}}>
         <div className={classes.meetupCard}>
-          <h3 className={classes.meetupHeading}>{meetup.title}</h3>
+          <h3 className={meetupStyle}>{meetup.title}</h3>
           <div className={classes.meetup} role="listitem" data-testid={testId} >
             <p>Start: {startTime}</p>
             <p>End: {endTime}</p>
