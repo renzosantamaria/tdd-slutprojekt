@@ -33,7 +33,10 @@ This project is the final project for the course Design Principles ans Patterns.
 
 ### Login credentials
 This app has several ficticious users. Their login details are as follows:  
-username: user1@email.com password: password1
-username: user2@email.com password: password2
-username: user3@email.com password: password3
-username: user4@email.com password: password4
+-username: user1@email.com password: password1
+
+-username: user2@email.com password: password2
+
+-username: user3@email.com password: password3
+
+-username: user4@email.com password: password4
