@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+#TDD final project - Meetup
+This project is the final project for the course Design Principles ans Patterns.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## User Stories
+- As a user I want to be able to see all upcoming meetups so that I can see which meetups are happening soon
+    - Site renders a list of all coming meetups in chronological order,
+    
+- As a user I want to see an overview of all meetups
+    - Each meetup card contains info about name, date, time, name and location of the meetup
 
-## Available Scripts
+- As a user I want to be able to see past meetups so that I can see what kind of events happen in my area
+    - Site renders a list of past meetups
+    - Past meetups are in reverse chronological order
+  
+- As a user I want to see the difference between coming and past events so I don't register for an event that has already passed
+    - Past meetups cards have a different heading background color
+    - Card displays message that event has already happened 
 
-In the project directory, you can run:
+- As a user I want to be able to see time, date and location of upcoming meetups so that I know when and how to attend
+    - Meetup card displays time, date and location 
+    - Meetup detail page displays time, date and location as well as description and host name
 
-### `npm start`
+- As a user I want to be able to login so that I can register for events
+    - Login button visible in header when user is logged out   
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- As a logged in user I want to be able to register myself for an event.
+    - Attend button is visible on meetup detail page when user is logged in
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- As a logged in user I want to be able to comment on an event so that I can ask questions to the organiser
 
-### `npm test`
+- As a logged in user I want to be able to log out so that my information is not visible to others sharing the same device
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Login credentials
+This app has several ficticious users. Their login details are as follows:  
+username: user1@email.com password: password1
+username: user2@email.com password: password2
+username: user3@email.com password: password3
+username: user4@email.com password: password4
