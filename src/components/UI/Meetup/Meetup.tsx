@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { IMeetup } from '../../../store/meetup/meetup.types'
 import { Link } from 'react-router-dom'
+import classes from './Meetup.module.css'
 
 interface Props {
   meetup: IMeetup
@@ -10,28 +11,19 @@ interface Props {
 
 const Meetup: FC<Props> = (props) => {
     const { meetup, testId, pastMeetup } = props
+    const startTime = `${meetup.startDate.toDateString()} ${meetup.startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`
+    const endTime = `${meetup.endDate.toDateString()} ${meetup.endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`
     return (
-        <Link to={`/meetups/${meetup.id}`} state={{pastMeetup}} >
-      <div role="listitem" data-testid={testId} >
-        <h3>
-          {meetup.title}
-        </h3>
-
-        <p>
-          <strong>Start: </strong>
-          {meetup.startDate.toDateString()} {meetup.startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-        </p>
-        <p></p>
-        <p>
-          <strong>End: </strong>
-          {meetup.endDate.toDateString()} {meetup.endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
-        </p>
-        <p>
-          <strong>Address: </strong>
-          {meetup.address}
-        </p>
-      </div>
-    </Link>
+      <Link to={`/meetups/${meetup.id}`} state={{pastMeetup}}>
+        <div className={classes.meetupCard}>
+          <h3 className={classes.meetupHeading}>{meetup.title}</h3>
+          <div className={classes.meetup} role="listitem" data-testid={testId} >
+            <p>Start: {startTime}</p>
+            <p>End: {endTime}</p>
+            <p>Address: {meetup.address}</p>
+          </div>
+        </div>
+      </Link>
     )
 }
 

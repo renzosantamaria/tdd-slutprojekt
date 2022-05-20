@@ -1,5 +1,5 @@
 .header {
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(47, 64, 40);
     display: flex;
     padding: 1rem;
 }
@@ -14,5 +14,5 @@
 
 a{
     text-decoration: none;
-    color: rgb(239, 212, 159);
+    color: rgb(218, 240, 201);
 }

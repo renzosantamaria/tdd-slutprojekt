@@ -1,0 +1,19 @@
+.meetupCard{
+    border-radius: 6px; 
+    box-shadow: 6px 6px 14px -2px rgba(0,0,0,0.2); 
+    color: rgb(66, 84, 57);
+}
+
+.meetup{
+    padding: 1rem 1.4rem;
+    margin-bottom: 2rem;
+}
+.meetupHeading{
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem 0.2rem;
+    background-color: rgb(196, 225, 183);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+

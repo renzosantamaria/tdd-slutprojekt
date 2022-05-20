@@ -1,0 +1,32 @@
+.flexContainer{
+    display: flex;
+    justify-content: space-around;
+    /* background-color: rgb(121, 212, 113); */
+}
+@media (max-width: 550px){
+    .flexContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.meetupWrapper{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 550px){
+    .meetupWrapper{
+        margin-bottom: 4rem;
+    }
+}
+.meetupHeading{
+    /* background-color: rgb(119, 123, 211); */
+    margin: 0 auto 1rem;
+    color: rgb(59, 68, 54);
+    text-transform: uppercase;
+}
+.meetupList{
+    padding: 0;
+    margin: 0;
+    /* background-color: rgb(78, 136, 136); */
+}
