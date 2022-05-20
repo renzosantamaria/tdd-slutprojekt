@@ -25,18 +25,19 @@ const MeetupDetails: FC = () => {
     const [newComment, setNewComment] = useState<string>('')
     const location = useLocation()
     const state = location.state as CustomLocationState
-    const past = state&&state.pastMeetup || undefined
+    const past = state&&state.pastMeetup 
 
     useEffect(() => {
         const currentMeetup = getMeetupById(+id!)
         currentMeetup ? setMeetup(currentMeetup) : setMeetupExists(false)
         !user && setCantJoinMessage('log in to register!')
-    }, [])
+        past && setCantJoinMessage('this is an old meetup')
+    }, [id, user])
 
     useEffect(() => {
         let userIsAlreadyRegistered = false
         user?.attendingMeetupsIds.map(attendingMeetupsId => {
-            if (attendingMeetupsId == +id!) {
+            if (attendingMeetupsId === +id!) {
                 userIsAlreadyRegistered = true
             }
         })
@@ -46,7 +47,7 @@ const MeetupDetails: FC = () => {
         }else {
             setIsUserAllowedToJoin(true)
         }
-    }, [user])
+    }, [user, id])
 
     useEffect(() => {
         if (meetup) {
@@ -77,7 +78,7 @@ const MeetupDetails: FC = () => {
             <div className={classes.meetupDetailsContainer}>
                 <div className={classes.flexHorizontal}>
                     <section className={classes.meetupInformation}>
-                        <h1>{meetup?.title}</h1>
+                        <h1>{meetup?.title} {past? '- PAST' : ''}</h1>
                         <div>
                             <p>Hosted by: {meetup.hostName}</p>
                             <p>Description: {meetup.description}</p>
@@ -100,8 +101,8 @@ const MeetupDetails: FC = () => {
                         </div>
                     </section>
                     <section className={classes.attendSection}>
-                        {isUserAllowedToJoin && user && <button onClick={handleAddAttendee}>Attend</button>}
-                        {(!user || !isUserAllowedToJoin )&& <p>{cantJoinMessage}</p>}
+                        {isUserAllowedToJoin && user && !past && <button onClick={handleAddAttendee}>Attend</button>}
+                        {(!user || !isUserAllowedToJoin || past )&& <p>{cantJoinMessage}</p>}
                     </section>
                 </div>
                 <section className={classes.commentsSection}>
