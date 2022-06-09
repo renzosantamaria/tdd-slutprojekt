@@ -5,8 +5,8 @@ export let meetups: IMeetup[] = [
   {
     id: 1,
     title: 'meetup 1',
-    startDate: new Date('2022-05-18T17:30:00'),
-    endDate: new Date('2022-05-19T15:00:00'),
+    startDate: new Date('2023-05-18T17:30:00'),
+    endDate: new Date('2023-05-19T15:00:00'),
     hostName: 'user 1',
     description:
       'desc 1',
